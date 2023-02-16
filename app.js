@@ -1,12 +1,17 @@
 import express from 'express'
+import { engine } from 'express-handlebars'
 import users from './data/users.json'
 
 const app = express()
 app.use(express.json());
 
-app.get('/', (req, res, next) => {
-  res.status(200).send('<h1 style="color:red">Hola Koders!!!</h1>')
-  next()
+app.engine('handlebars', engine())
+app.set('view engine', 'handlebars')
+app.set('views', './views')
+
+app.get('/', (req, res) => {
+  // res.status(200).send('<h1 style="color:red">Hola Koders!!!</h1>')
+  res.render('home')
 })
 
 app.get('/hola', (_, res) => {
@@ -14,7 +19,7 @@ app.get('/hola', (_, res) => {
 })
 
 app.get('/users', (_, res) => {
-  res.status(200).send(users)
+  res.render('users')
 })
 
 app.get('/users/:id', (req, res) => {
