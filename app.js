@@ -1,11 +1,11 @@
-const express = require('express')
+import express from 'express'
+import users from './data/users.json'
 
 const app = express()
 app.use(express.json());
 
 app.get('/', (req, res, next) => {
   res.status(200).send('<h1 style="color:red">Hola Koders!!!</h1>')
-
   next()
 })
 
@@ -13,14 +13,14 @@ app.get('/hola', (_, res) => {
   res.status(200).send('Hola Raf4')
 })
 
+app.get('/users', (_, res) => {
+  res.status(200).send(users)
+})
+
 app.get('/users/:id', (req, res) => {
   const userId = req.params.id
+
   console.log(typeof userId)
-  const users = [
-    { id: 1, nombre: "Rafael"},
-    { id: 2, nombre: "Pedro"},
-    { id: 3, nombre: "Maria"}
-  ]
 
   const usuarioEncontrado = users.find(user => user.id == userId)
 
