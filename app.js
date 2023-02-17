@@ -1,5 +1,4 @@
 import express from 'express'
-import { engine } from 'express-handlebars'
 
 import usersRouter from './src/routes/usersRouter'
 // import users from './data/users.json'
@@ -8,18 +7,13 @@ import usersRouter from './src/routes/usersRouter'
 const app = express()
 app.use(express.json());
 
-app.engine('handlebars', engine())
-app.set('view engine', 'handlebars')
-app.set('views', './src/views')
-
 // Entrada de peticiones de los enrutadores
-app.get('/', (_, res) => {
-  res.render('home')
+app.get('/home', (_, res) => {
+  res.send({ message: 'Bienvenidos Koders!' })
 })
 
-app.use('/v1/users', usersRouter)
-app.use('/v1/users/json', usersRouter)
+app.use('/', usersRouter)
 
 app.listen(3000, () => {
-  console.log('Aplicación corriendo en el puerto 3001')
+  console.log('Aplicación corriendo en el puerto 3000')
 })
