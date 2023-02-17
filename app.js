@@ -21,5 +21,5 @@ app.use('/v1/users', usersRouter)
 app.use('/v1/users/json', usersRouter)
 
 app.listen(3000, () => {
-  console.log('Aplicación corriendo en el puerto 3000')
+  console.log('Aplicación corriendo en el puerto 3001')
 })
